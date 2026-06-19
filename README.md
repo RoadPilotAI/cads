@@ -24,6 +24,7 @@
   - [Company Admin — Hearing Test Company Management](#company-admin--hearing-test-company-management)
   - [Employer Portal — HCP Management for Industrial Employers](#employer-portal--hcp-management-for-industrial-employers)
   - [Provincial Dashboard — Regulator Intelligence Platform](#provincial-dashboard--regulator-intelligence-platform)
+  - [Worker PWA — Pre-Test Questionnaire](#worker-pwa--pre-test-questionnaire)
 - [Who Benefits and How](#who-benefits-and-how)
 - [Time and Cost Savings](#time-and-cost-savings)
 - [Business Model](#business-model)
@@ -104,11 +105,11 @@ The standard is versioned from day one (CADS v1.0). Province-specific requiremen
 
 ## The CADS Platform
 
-The Canadian Audiometric Data System is the reference implementation of the CADS standard. It is a purpose-built platform with four distinct interfaces, each serving a different stakeholder in the hearing conservation ecosystem.
+The Canadian Audiometric Data System is the reference implementation of the CADS standard. It is a purpose-built platform with five distinct interfaces, each serving a different stakeholder in the hearing conservation ecosystem.
 
-| TechTool | Company Admin | Employer Portal | Provincial Dashboard |
-|---|---|---|---|
-| Field Technician | Hearing Test Company | Industrial Employer | Provincial Regulator |
+| TechTool | Company Admin | Employer Portal | Provincial Dashboard | Worker PWA |
+|---|---|---|---|---|
+| Field Technician | Hearing Test Company | Industrial Employer | Provincial Regulator | Worker |
 
 ### TechTool — The Field Application
 
@@ -130,7 +131,7 @@ Company Admin is the administrative interface for hearing test companies — the
 
 ### Employer Portal — HCP Management for Industrial Employers
 
-The Employer Portal is the most significant innovation in the CADS platform. It gives industrial employers — the companies with noise-exposed workers — a purpose-built tool for managing their entire Hearing Conservation Program from within the provincial web portal.
+The Employer Portal gives industrial employers — the companies with noise-exposed workers — a purpose-built tool for managing their entire Hearing Conservation Program from within the provincial web portal.
 
 - **Guided HCP Builder:** step-by-step wizard to create a compliant written Hearing Conservation Program, pre-populated with province-specific regulatory requirements
 - Worker roster management with noise exposure group assignments
@@ -156,6 +157,22 @@ The Provincial Dashboard gives occupational health regulators something they hav
 
 This is not a data portal. It is an occupational health intelligence platform — hosted and designed by CADS, not built by a provincial IT department.
 
+### Worker PWA — Pre-Test Questionnaire
+
+The Worker PWA is a smartphone-optimized Progressive Web App that allows workers to complete the CADS standardized pre-test questionnaire before arriving at the mobile clinic. It is the only CADS interface designed for workers directly.
+
+- Accessed via a unique link or QR code — no account creation or password required
+- Works on any smartphone browser, no app download required
+- Available in English and French
+- Large touch targets and plain language — designed for the industrial worker, not a software user
+- Estimated completion time: 2–3 minutes
+
+The employer distributes the link or QR code to workers in advance of testing day — via email, SMS, or a QR code posted at the worksite. When workers arrive at the mobile clinic, their questionnaire is already complete. The technician reviews answers, confirms the quiet period, performs otoscopy, and proceeds directly to testing.
+
+**Time savings across a 50-worker testing day: 2–3 hours of recovered testing capacity.**
+
+The pre-completed questionnaire also improves data quality. Workers answering on their own time, without a lineup behind them, provide more thoughtful and accurate responses — particularly on medical history and non-occupational noise exposure questions that are relevant to workers' compensation attribution.
+
 ---
 
 ## Who Benefits and How
@@ -166,7 +183,7 @@ This is not a data portal. It is an occupational health intelligence platform �
 | **Hearing Test Company** | Competitive advantage, efficient multi-technician management, automated reporting, and a platform that grows with the business. |
 | **Industrial Employer** | Genuine compliance made simple. Guided HCP creation, real-time worker status, automated notifications, and an audit-ready paper trail. |
 | **Provincial Regulator** | Population-level hearing health intelligence for the first time. Data-driven policy, real compliance visibility, and employer accountability built in. |
-| **Worker** | A hearing conservation program that actually tracks their health over time, flags changes early, and ensures they get the referrals they need. |
+| **Worker** | A hearing conservation program that actually tracks their health over time, flags changes early, ensures they get the referrals they need, and provides documented evidence for compensation claims. |
 
 ---
 
@@ -176,6 +193,7 @@ This is not a data portal. It is an occupational health intelligence platform �
 - Offline-first design eliminates connectivity workarounds and data entry duplication
 - Automated STS calculations remove manual computation errors
 - Packet-based workflow reduces setup time between sites
+- Worker PWA pre-completion recovers 2–3 hours of testing capacity per 50-worker day
 - Faster testing throughput means more tests per day at the same quality
 
 ### For Hearing Test Companies
@@ -188,6 +206,7 @@ This is not a data portal. It is an occupational health intelligence platform �
 - Automated testing reminders eliminate missed compliance deadlines
 - Digital audit trail replaces paper-based record management
 - Early STS intervention reduces long-term compensation claim costs
+- Worker PWA reduces time workers spend away from their stations on testing day
 
 ### For Provinces
 - Standardized data ingestion eliminates manual data collection from hearing test companies
@@ -199,7 +218,7 @@ This is not a data portal. It is an occupational health intelligence platform �
 
 ## Business Model
 
-CADS operates on a per-test pricing model. The province hosts the platform infrastructure. CADS provides the complete application stack — TechTool, Company Admin, Employer Portal, and Provincial Dashboard — and charges per audiometric test processed through the system.
+CADS operates on a per-test pricing model. The province hosts the platform infrastructure. CADS provides the complete application stack — TechTool, Company Admin, Employer Portal, Provincial Dashboard, and Worker PWA — and charges per audiometric test processed through the system.
 
 > **$1.50 per test**
 > Province hosts infrastructure. CADS provides the engine.
@@ -240,7 +259,7 @@ Alberta is one province. BC, Saskatchewan, Ontario, Quebec, and the Atlantic pro
 - First commercial customers signed
 
 ### Phase 3 — Provincial Contract
-- Provincial Dashboard complete
+- Provincial Dashboard and Worker PWA complete
 - Per-test billing infrastructure operational
 - First provincial contract signed (target: Alberta or BC)
 - Provincial platform hosting established on Canadian infrastructure
@@ -267,6 +286,7 @@ Alberta is one province. BC, Saskatchewan, Ontario, Quebec, and the Atlantic pro
 /docs/
     architecture.md                 ← Platform architecture overview
     data-model.md                   ← CADS data schema reference
+    provincial-comparison.md        ← BC, AB, SK regulatory comparison
 ```
 
 ---
@@ -275,7 +295,7 @@ Alberta is one province. BC, Saskatchewan, Ontario, Quebec, and the Atlantic pro
 
 CADS was conceived and built by a working Industrial Audiometric Technician with direct field experience conducting hearing conservation programs at industrial sites across British Columbia and Alberta. The platform was not designed by a software company that researched the problem. It was designed by someone who lives it.
 
-That distinction matters. The regulatory logic is correct because the author knows the regulations. The workflow is efficient because the author has done the work. The Employer Portal is complete because the author has seen what happens when employers lack proper tools. The Provincial Dashboard is powerful because the author understands what data regulators actually need.
+That distinction matters. The regulatory logic is correct because the author knows the regulations. The workflow is efficient because the author has done the work. The Employer Portal is complete because the author has seen what happens when employers lack proper tools. The Worker PWA exists because the author has stood at a mobile clinic with 50 workers in line and understood exactly where the time goes.
 
 ---
 
