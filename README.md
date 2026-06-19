@@ -8,6 +8,32 @@
 
 ---
 
+## Table of Contents
+
+- [Vision](#vision)
+- [The Problem](#the-problem)
+  - [Hearing Loss Is Canada's Most Underreported Occupational Injury](#hearing-loss-is-canadas-most-underreported-occupational-injury)
+  - [The System Is Fragmented](#the-system-is-fragmented)
+  - [The Compliance Gap](#the-compliance-gap)
+- [The Canadian Audiometric Data Standard](#the-canadian-audiometric-data-standard-cads)
+  - [What the Standard Defines](#what-the-standard-defines)
+  - [Why the NOC Integration Matters](#why-the-noc-integration-matters)
+  - [Versioning and Governance](#versioning-and-governance)
+- [The CADS Platform](#the-cads-platform)
+  - [TechTool — The Field Application](#techtool--the-field-application)
+  - [Company Admin — Hearing Test Company Management](#company-admin--hearing-test-company-management)
+  - [Employer Portal — HCP Management for Industrial Employers](#employer-portal--hcp-management-for-industrial-employers)
+  - [Provincial Dashboard — Regulator Intelligence Platform](#provincial-dashboard--regulator-intelligence-platform)
+- [Who Benefits and How](#who-benefits-and-how)
+- [Time and Cost Savings](#time-and-cost-savings)
+- [Business Model](#business-model)
+- [Path to National Deployment](#path-to-national-deployment)
+- [Repository Structure](#repository-structure)
+- [About CADS](#about-cads)
+- [Contact](#contact)
+
+---
+
 ## Vision
 
 Workplace hearing loss is preventable. Yet it remains one of the most common occupational injuries in Canada — not because the science is unclear, but because the systems supporting hearing conservation are fragmented, inconsistent, and difficult to use.
@@ -227,11 +253,39 @@ Alberta is one province. BC, Saskatchewan, Ontario, Quebec, and the Atlantic pro
 
 ---
 
+## Repository Structure
+
+```
+/README.md                          ← Vision & platform overview (this document)
+/standard/
+    CADS-v1.0.md                    ← The formal CADS data standard specification
+    questionnaire.md                ← Standardized pre-test questionnaire
+/provincial/
+    BC.md                           ← British Columbia regulatory module
+    AB.md                           ← Alberta regulatory module
+    SK.md                           ← Saskatchewan regulatory module
+/docs/
+    architecture.md                 ← Platform architecture overview
+    data-model.md                   ← CADS data schema reference
+```
+
+---
+
 ## About CADS
 
 CADS was conceived and built by a working Industrial Audiometric Technician with direct field experience conducting hearing conservation programs at industrial sites across British Columbia and Alberta. The platform was not designed by a software company that researched the problem. It was designed by someone who lives it.
 
 That distinction matters. The regulatory logic is correct because the author knows the regulations. The workflow is efficient because the author has done the work. The Employer Portal is complete because the author has seen what happens when employers lack proper tools. The Provincial Dashboard is powerful because the author understands what data regulators actually need.
+
+---
+
+## Contact
+
+CADS is developed and maintained by **RoadPilotAI**.
+
+For inquiries regarding the Canadian Audiometric Data Standard, platform development, provincial partnerships, or HCP consulting services:
+
+**GitHub:** [github.com/RoadPilotAI](https://github.com/RoadPilotAI)
 
 ---
 
