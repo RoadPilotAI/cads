@@ -131,7 +131,7 @@ The practical takeaway: **the differences are manageable. The common ground is s
 | Records accessible to workers | ✓ | ✓ | ✓ | Identical |
 | Annual program review | ✓ | ✓ | ✓ | Identical |
 
-> **CADS note:** Record retention has a minor BC variation. Configurable in the data layer. No structural difference.
+> **CADS note:** Record retention has a minor BC regulatory requirement. Configurable in the data layer. No structural difference.
 
 ---
 
