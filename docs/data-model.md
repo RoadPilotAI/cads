@@ -534,7 +534,7 @@ Complete example records for each type. UUIDs are illustrative.
 
 ## 5. Province Configuration Reference
 
-Province configurations are JSON objects that define regulatory variations. Full schema in `standard/CADS-v1.0.md` Section 7.
+Province configurations are JSON objects that define the regulatory context in which the CADS standard is applied. The standard itself is universal — data model, calculations, and field definitions are identical across all jurisdictions. Configurations tell the platform which jurisdiction-specific requirements are in effect. Full schema in `standard/CADS-v1.0.md` Section 7.
 
 ### British Columbia
 ```json
