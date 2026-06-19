@@ -115,7 +115,7 @@ The following documents are referenced by this standard. In the event of conflic
 | **NIHL** | Noise-Induced Hearing Loss. Permanent sensorineural hearing loss caused by excessive noise exposure. |
 | **NOC** | National Occupational Classification. Canada's national system for classifying occupations, maintained by Employment and Social Development Canada. This standard uses NOC 2021 (5th Edition). |
 | **Periodic Audiogram** | An audiometric test conducted at regular intervals (typically annually) to monitor changes in a worker's hearing thresholds relative to baseline. |
-| **Province Config** | A province-specific configuration file that defines regulatory variations, required fields, and system endpoints for a given jurisdiction. |
+| **Province Config** | A province-specific configuration file that defines the regulatory context for a given jurisdiction — which jurisdiction-specific requirements are in effect, required fields, and system endpoints. The CADS standard itself is identical across all provinces; the configuration tells the platform how to apply it. |
 | **Record UUID** | A universally unique identifier assigned to each data record at creation time, enabling unambiguous identification across systems. |
 | **STS** | Standard Threshold Shift. A clinically significant change in hearing thresholds from baseline, defined in this standard as an average shift of 10 dB or greater at 2000, 3000, and 4000 Hz in either ear. |
 | **TWA** | Time-Weighted Average. The average noise exposure level over an 8-hour work period, calculated using a 3 dB exchange rate. |
@@ -450,6 +450,8 @@ Outcomes are assigned according to the following hierarchy:
 ---
 
 ## 7. Province Configuration Schema
+
+The CADS standard is universal — the data model, calculations, and field definitions are identical across all jurisdictions. Province configurations define the regulatory context in which the standard is applied, specifying which jurisdiction-specific requirements are in effect for a given province.
 
 ### 7.1 Configuration Fields
 
