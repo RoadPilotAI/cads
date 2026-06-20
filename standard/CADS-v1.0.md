@@ -2,7 +2,7 @@
 ## CADS v1.0 — Formal Specification
 
 **Status:** Draft
-**Version:** 1.0.0
+**Version:** 1.0.1
 **Date:** June 2026
 **Maintainer:** RoadPilotAI
 **Repository:** [github.com/RoadPilotAI/cads](https://github.com/RoadPilotAI/cads)
@@ -15,13 +15,13 @@
   - [1.1 Purpose](#11-purpose)
   - [1.2 Scope](#12-scope)
   - [1.3 Intended Audience](#13-intended-audience)
-  - [1.4 Relationship to the CADS Platform](#14-relationship-to-the-cads-platform)
 - [2. Normative References](#2-normative-references)
 - [3. Terms and Definitions](#3-terms-and-definitions)
 - [4. Standard Overview](#4-standard-overview)
   - [4.1 Design Principles](#41-design-principles)
-  - [4.2 Record Architecture](#42-record-architecture)
-  - [4.3 Data Format](#43-data-format)
+  - [4.2 Two-Tier Architecture](#42-two-tier-architecture)
+  - [4.3 Record Architecture](#43-record-architecture)
+  - [4.4 Data Format](#44-data-format)
 - [5. Record Specifications](#5-record-specifications)
   - [5.1 Provider Record](#51-provider-record)
   - [5.2 Technician Record](#52-technician-record)
@@ -34,13 +34,14 @@
   - [6.2 Age Correction](#62-age-correction)
   - [6.3 Baseline Comparison Rules](#63-baseline-comparison-rules)
   - [6.4 Outcome Classification](#64-outcome-classification)
-- [7. Province Configuration Schema](#7-province-configuration-schema)
-  - [7.1 Configuration Fields](#71-configuration-fields)
-  - [7.2 Reference Configurations](#72-reference-configurations)
+- [7. Provincial Profile Schema](#7-provincial-profile-schema)
+  - [7.1 Purpose of Provincial Profiles](#71-purpose-of-provincial-profiles)
+  - [7.2 Profile Field Definitions](#72-profile-field-definitions)
+  - [7.3 Profile Documents](#73-profile-documents)
 - [8. Conformance Requirements](#8-conformance-requirements)
-  - [8.1 Mandatory Fields](#81-mandatory-fields)
-  - [8.2 Calculation Compliance](#82-calculation-compliance)
-  - [8.3 Province Configuration Compliance](#83-province-configuration-compliance)
+  - [8.1 Core Conformance](#81-core-conformance)
+  - [8.2 Calculation Conformance](#82-calculation-conformance)
+  - [8.3 Profile Conformance](#83-profile-conformance)
 - [9. Versioning and Change Control](#9-versioning-and-change-control)
 - [Appendix A — NOC 2021 Reference Codes](#appendix-a--noc-2021-reference-codes)
 - [Appendix B — Age Correction Tables](#appendix-b--age-correction-tables)
@@ -52,50 +53,59 @@
 
 ### 1.1 Purpose
 
-The Canadian Audiometric Data Standard (CADS) defines a national data exchange format for industrial audiometric testing conducted under occupational health and safety regulations across Canadian provinces and territories.
+The Canadian Audiometric Data Standard (CADS) defines the national data exchange format for industrial audiometric testing conducted in Canada.
 
-CADS enables consistent capture, exchange, and analysis of hearing conservation data between field technicians, hearing test companies, industrial employers, and provincial regulators — regardless of which software platform generates or receives the data.
+The standard governs how audiometric data is captured, structured, and exchanged when testing is conducted. It makes no determination about when testing is required — that is the domain of provincial and territorial occupational health and safety legislation. In jurisdictions where audiometric testing is mandated by regulation, CADS provides the data standard for that testing. In jurisdictions where testing is conducted as best practice under general duty of care, CADS provides the same standard. The data captured is identical regardless of the regulatory context in which testing occurs.
+
+CADS exists to create consistency where none currently exists — across providers, across provinces, and across time.
 
 ### 1.2 Scope
 
-This standard applies to:
+This standard applies to industrial audiometric testing conducted as part of occupational health and safety programs across Canada, including:
 
-- Audiometric testing conducted as part of a mandated Hearing Conservation Program (HCP) under provincial occupational health and safety legislation
 - Baseline, periodic, and exit audiometric tests performed by qualified Industrial Audiometric Technicians (IATs), physicians, or audiologists
-- Data exchange between field applications, administrative platforms, employer portals, and provincial regulatory systems
+- Audiometric testing conducted under provincial and territorial occupational health and safety legislation
+- Audiometric testing conducted as best practice under employer general duty of care obligations
+- Data exchange between field applications, administrative platforms, employer systems, and provincial regulatory systems
 
-This standard does not apply to:
+This standard explicitly does not govern:
 
-- Clinical audiometric testing conducted for diagnostic or therapeutic purposes
+- Whether audiometric testing is required — that is determined by applicable provincial or territorial legislation
+- How frequently testing must be conducted — that is a provincial profile matter addressed in jurisdiction-specific profile documents
+- Whether a Hearing Conservation Program is required — that is a provincial legislative matter
+- Clinical audiometric testing conducted for diagnostic or therapeutic purposes outside occupational health contexts
 - Hearing aid fitting or dispensing
-- Noise exposure assessment methodologies (noise dosimetry, area monitoring)
 
 ### 1.3 Intended Audience
 
-- Software developers implementing CADS-compliant applications
+- Software developers implementing CADS-conformant applications
 - Industrial Audiometric Technicians and hearing test companies
-- Industrial employers managing Hearing Conservation Programs
-- Provincial occupational health and safety regulators
-- Researchers working with Canadian occupational hearing health data
-
-### 1.4 Relationship to the CADS Platform
-
-The Canadian Audiometric Data System is the reference implementation of this standard. Compliance with this standard does not require use of the CADS platform. Any platform that correctly implements the record specifications, compliance calculations, and province configuration schema defined in this document may claim CADS conformance.
+- Industrial employers managing occupational hearing health programs
+- Provincial and territorial occupational health and safety regulators
+- Occupational health researchers working with Canadian audiometric data
 
 ---
 
 ## 2. Normative References
 
-The following documents are referenced by this standard. In the event of conflict, this standard takes precedence for data formatting purposes; the referenced regulations take precedence for compliance requirements.
+The following documents informed the development of this standard. Where audiometric methodology is described, this standard aligns with CSA Z107.6 as the Canadian reference. Provincial and territorial regulations are listed as informing references; in the event of conflict between this standard and applicable legislation, legislation takes precedence.
 
 | Reference | Document |
 |---|---|
+| CSA Z107.6 | Audiometric Testing for Use in Hearing Loss Prevention Programs — Canadian Standards Association |
+| CSA Z94.2 | Hearing Protection Devices — Performance, Selection, Care and Use — Canadian Standards Association |
+| CSA Z1007 | Hearing Loss Prevention Program Management — Canadian Standards Association |
+| NIOSH 1998 | Criteria for a Recommended Standard: Occupational Noise Exposure — National Institute for Occupational Safety and Health |
+| ISO 8253-1 | Acoustics — Audiometric Test Methods — Part 1: Pure-tone air and bone conduction audiometry |
+| NOC 2021 | National Occupational Classification, 5th Edition — Employment and Social Development Canada |
 | WorkSafeBC OHS Regulation Part 7 | Noise, Vibration, Radiation and Temperature — British Columbia |
 | Alberta OHS Code Part 16 | Noise Exposure — Alberta |
-| Saskatchewan OHS Regulations Part 7 | Noise — Saskatchewan |
-| NOC 2021 | National Occupational Classification, 5th Edition — Employment and Social Development Canada |
-| ISO 8253-1 | Acoustics — Audiometric test methods — Part 1: Pure-tone air and bone conduction audiometry |
-| NIOSH 1998 | Criteria for a Recommended Standard: Occupational Noise Exposure |
+| Saskatchewan OHS Regulations Part 8 | Noise Control and Hearing Conservation — Saskatchewan |
+| Manitoba WSH Regulation Part 12 | Noise Control and Hearing Conservation — Manitoba |
+| Ontario O. Reg. 381/15 | Noise — Ontario |
+| CNESST RSST Division XV | Bruit — Quebec |
+| PEI OHS General Regulations Part 8 | Noise Control and Hearing Conservation — Prince Edward Island |
+| NL OHS Regulations Part VI | Noise — Newfoundland and Labrador |
 
 ---
 
@@ -103,21 +113,23 @@ The following documents are referenced by this standard. In the event of conflic
 
 | Term | Definition |
 |---|---|
-| **Action Level** | The noise exposure level at which an employer is required to implement a Hearing Conservation Program. Currently 82 dBA TWA across all supported provinces. |
-| **Age Correction** | An adjustment applied to audiometric thresholds to account for expected age-related hearing change (presbycusis), allowing separation of occupational hearing loss from age-related change. |
+| **Action Level** | The noise exposure level above which specific regulatory obligations are triggered. Varies by jurisdiction — commonly 80 or 82 dBA TWA across Canadian provinces. |
+| **Age Correction** | An adjustment applied to audiometric thresholds to account for expected age-related hearing change (presbycusis), allowing separation of occupational hearing loss from normal ageing. |
 | **Audiogram** | A graphical or tabular representation of an individual's hearing thresholds at specified frequencies. |
 | **Baseline Audiogram** | The initial audiometric test result used as the reference point for comparison in subsequent periodic testing. |
+| **CADS Core Standard** | The universal requirements of this standard, applicable to all industrial audiometric testing conducted in Canada regardless of jurisdiction. |
+| **CADS Provincial Profile** | A jurisdiction-specific document that defines the regulatory context in which the CADS Core Standard is applied. Provincial profiles do not modify the core standard — they extend it with jurisdiction-specific parameters. |
 | **dB HL** | Decibels Hearing Level. The unit of measurement for audiometric thresholds, referenced to standardized normal hearing levels. |
 | **Exit Audiogram** | An audiometric test conducted when a worker leaves noise-exposed employment, providing a final record of their occupational hearing status. |
-| **HCP** | Hearing Conservation Program. A documented, employer-managed program that includes noise assessment, hearing protection, audiometric testing, worker education, and record keeping. |
-| **HPD** | Hearing Protection Device. Personal protective equipment worn to reduce noise exposure at the ear, including foam plugs, pre-moulded plugs, earmuffs, and custom-moulded devices. |
+| **HCP** | Hearing Conservation Program. A documented, employer-managed program that may include noise assessment, hearing protection, audiometric testing, worker education, and record keeping. Whether a formal HCP is required is a provincial legislative matter. |
+| **HPD** | Hearing Protection Device. Personal protective equipment worn to reduce noise exposure at the ear. |
 | **IAT** | Industrial Audiometric Technician. A certified technician qualified to conduct occupational audiometric testing under applicable provincial regulations. |
 | **NIHL** | Noise-Induced Hearing Loss. Permanent sensorineural hearing loss caused by excessive noise exposure. |
 | **NOC** | National Occupational Classification. Canada's national system for classifying occupations, maintained by Employment and Social Development Canada. This standard uses NOC 2021 (5th Edition). |
-| **Periodic Audiogram** | An audiometric test conducted at regular intervals (typically annually) to monitor changes in a worker's hearing thresholds relative to baseline. |
-| **Province Config** | A province-specific configuration file that defines the regulatory context for a given jurisdiction — which jurisdiction-specific requirements are in effect, required fields, and system endpoints. The CADS standard itself is identical across all provinces; the configuration tells the platform how to apply it. |
-| **Record UUID** | A universally unique identifier assigned to each data record at creation time, enabling unambiguous identification across systems. |
-| **STS** | Standard Threshold Shift. A clinically significant change in hearing thresholds from baseline, defined in this standard as an average shift of 10 dB or greater at 2000, 3000, and 4000 Hz in either ear. |
+| **Periodic Audiogram** | An audiometric test conducted at regular intervals to monitor changes in a worker's hearing thresholds relative to baseline. Testing frequency is defined by applicable provincial legislation or employer program design. |
+| **Proxy Estimation** | The practice of using available contextual information — time of day, shift schedule, visual observation, worker statements — to produce a reasonable estimate when a direct answer is unavailable or unreliable. An accepted and documented practice under this standard for contextual questionnaire fields. |
+| **Record UUID** | A universally unique identifier assigned to each data record at creation time. |
+| **STS** | Standard Threshold Shift. A clinically significant change in hearing thresholds from baseline, defined in this standard as an average shift of 10 dB or more at 2000, 3000, and 4000 Hz in either ear. This definition is consistent across all Canadian jurisdictions that define STS. |
 | **TWA** | Time-Weighted Average. The average noise exposure level over an 8-hour work period, calculated using a 3 dB exchange rate. |
 
 ---
@@ -126,29 +138,45 @@ The following documents are referenced by this standard. In the event of conflic
 
 ### 4.1 Design Principles
 
-CADS is designed around the following principles:
+**Independence.** The CADS Core Standard is independent of any specific software implementation, regulatory framework, and provincial jurisdiction. It does not require any particular technology, platform, or system to implement.
 
-**Simplicity.** The standard captures what is needed for occupational hearing conservation compliance. It does not attempt to capture clinical diagnostic data beyond the scope of industrial audiometric programs.
+**Universality.** The core standard applies uniformly to all industrial audiometric testing conducted in Canada. Provincial and territorial regulatory differences are addressed through jurisdiction-specific profiles that extend the core without modifying it.
 
-**Province-configurability.** Meaningful regulatory differences between provinces are handled through configuration, not structural variation. The core data model is identical across all provinces.
+**Simplicity.** The standard captures what is needed for occupational hearing health documentation. It does not attempt to capture clinical diagnostic data beyond the scope of industrial audiometric programs.
 
-**Interoperability.** Records are self-describing and include version metadata, enabling future evolution without breaking existing implementations.
+**Privacy by design.** Worker identifiers are anonymized UUIDs. Date of birth is captured for calculation purposes only. Personally identifiable information remains within the control of the hearing test company and employer.
 
-**Privacy by design.** Worker identifiers are anonymized UUIDs. Date of birth is captured for calculation purposes but is not required in provincial data transfers. Personally identifiable information remains within the control of the hearing test company and employer.
+**Auditability.** Every record includes creation timestamp, technician identifier, and equipment identifier, enabling a complete audit trail.
 
-**Auditability.** Every record includes creation timestamp, technician identifier, and equipment identifier, enabling a complete audit trail from test to provincial submission.
+**Honesty.** The standard acknowledges the operational reality of industrial field testing. Proxy estimation by qualified technicians is a recognized and documented practice. The questionnaire is designed to elicit accurate data through activity-type framing rather than self-reported compliance.
 
-### 4.2 Record Architecture
+### 4.2 Two-Tier Architecture
+
+CADS uses a two-tier architecture: the Core Standard and Provincial Profiles.
+
+**Tier 1 — CADS Core Standard (this document)**
+
+The universal requirements applicable to all industrial audiometric testing in Canada. Every CADS-conformant system must implement the core standard in full. The core standard is silent on provincial regulatory requirements — it defines what data is captured and how calculations are performed, not when testing must occur or how frequently.
+
+**Tier 2 — CADS Provincial Profiles (separate documents)**
+
+Jurisdiction-specific documents that define the regulatory context in which the core standard is applied. A provincial profile specifies the applicable regulatory authority and citation, testing requirements in that jurisdiction, testing frequency and baseline timing, HCP requirements, exit test requirements, record retention obligations, and language requirements.
+
+Provincial profiles do not modify the core standard. They reference it and extend it with jurisdiction-specific parameters. A system that is conformant with a provincial profile must first be conformant with the core standard.
+
+Provincial profile documents are maintained in the `provincial/` directory of the CADS repository.
+
+### 4.3 Record Architecture
 
 CADS defines six record types. Records reference each other by UUID:
 
 ```
 Provider Record
   └── Technician Record (belongs to Provider)
-        └── Test Record (conducted by Technician)
-              ├── Worker Record (subject of Test)
-              ├── Equipment Record (used in Test)
-              └── Questionnaire Record (collected during Test)
+  └── Equipment Record (belongs to Provider)
+        Test Record (conducted by Technician, uses Equipment)
+          ├── Worker Record (subject of Test)
+          └── Questionnaire Record (collected during Test)
 ```
 
 **Record types and their purpose:**
@@ -162,20 +190,20 @@ Provider Record
 | Questionnaire Record | Captures pre-test health and exposure history |
 | Test Record | Captures the audiometric results and compliance calculations |
 
-### 4.3 Data Format
+### 4.4 Data Format
 
-CADS records are expressed as JSON objects. All field names use `snake_case`. All dates use ISO 8601 format (`YYYY-MM-DD`). All datetimes use ISO 8601 format with UTC offset (`YYYY-MM-DDTHH:MM:SS±HH:MM`). All UUIDs use the standard UUID v4 format.
+CADS records are expressed as JSON objects. All field names use `snake_case`. All dates use ISO 8601 format (`YYYY-MM-DD`). All datetimes use ISO 8601 format with UTC offset (`YYYY-MM-DDTHH:MM:SS±HH:MM`). All UUIDs use UUID v4 format.
 
-**Example record envelope:**
+**Record envelope:**
 
 ```json
 {
-  "cads_version": "1.0.0",
+  "cads_version": "1.0.1",
   "record_type": "test",
   "record_uuid": "550e8400-e29b-41d4-a716-446655440000",
   "province": "AB",
   "created_at": "2026-06-15T14:32:00-06:00",
-  "payload": { ... }
+  "payload": { }
 }
 ```
 
@@ -193,53 +221,47 @@ Field requirement indicators:
 
 ### 5.1 Provider Record
 
-Identifies the hearing test company or individual practitioner delivering the audiometric program.
-
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
-| `provider_uuid` | string | R | Unique identifier for this provider | UUID v4 |
+| `provider_uuid` | UUID | R | Unique identifier for this provider | UUID v4 |
 | `company_name` | string | R | Legal name of the hearing test company | Max 200 chars |
-| `province_of_registration` | string | R | Province where the company is registered | ISO 3166-2 CA province code |
+| `province_of_registration` | string | R | Province where the company is registered | ISO 3166-2 CA code |
 | `contact_name` | string | O | Primary contact name | Max 100 chars |
 | `contact_email` | string | O | Primary contact email | Valid email format |
-| `cads_version` | string | R | CADS version this record was created under | Semver format e.g. `1.0.0` |
+| `cads_version` | string | R | CADS version this record was created under | Semver e.g. `1.0.1` |
 | `created_at` | datetime | R | Record creation timestamp | ISO 8601 with UTC offset |
 
 ---
 
 ### 5.2 Technician Record
 
-Identifies the qualified individual who conducted the audiometric test.
-
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
-| `technician_uuid` | string | R | Unique identifier for this technician | UUID v4 |
-| `provider_uuid` | string | R | Reference to the Provider Record | UUID v4 |
+| `technician_uuid` | UUID | R | Unique identifier for this technician | UUID v4 |
+| `provider_uuid` | UUID | R | Reference to the Provider Record | UUID v4 |
 | `credential_type` | string | R | Type of qualification held | `IAT` `physician` `audiologist` |
 | `certification_number` | string | R | Credential or certification number | Max 50 chars |
-| `province_of_certification` | string | R | Province where credential was issued | ISO 3166-2 CA province code |
-| `cads_version` | string | R | CADS version this record was created under | Semver format |
+| `province_of_certification` | string | R | Province where credential was issued | ISO 3166-2 CA code |
+| `cads_version` | string | R | CADS version this record was created under | Semver |
 | `created_at` | datetime | R | Record creation timestamp | ISO 8601 with UTC offset |
 
 ---
 
 ### 5.3 Equipment Record
 
-Identifies the audiometer used in testing and its calibration status. A valid, current calibration is a conformance requirement.
-
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
-| `equipment_uuid` | string | R | Unique identifier for this audiometer | UUID v4 |
-| `provider_uuid` | string | R | Reference to the Provider Record | UUID v4 |
+| `equipment_uuid` | UUID | R | Unique identifier for this audiometer | UUID v4 |
+| `provider_uuid` | UUID | R | Reference to the Provider Record | UUID v4 |
 | `make` | string | R | Audiometer manufacturer | Max 100 chars |
 | `model` | string | R | Audiometer model name | Max 100 chars |
 | `serial_number` | string | R | Manufacturer serial number | Max 100 chars |
 | `audiometer_type` | string | R | Classification of audiometer | `manual` `microprocessor` `automated` |
-| `last_biological_calibration` | date | R | Date of most recent biological calibration | ISO 8601 date. Must be within 1 year of test date. |
-| `last_acoustic_calibration` | date | R | Date of most recent electroacoustic calibration | ISO 8601 date. Must be within 1 year of test date. |
+| `last_biological_calibration` | date | R | Date of most recent biological calibration | ISO 8601. Must be within 1 year of test date. |
+| `last_acoustic_calibration` | date | R | Date of most recent electroacoustic calibration | ISO 8601. Must be within 1 year of test date. |
 | `calibration_certificate_ref` | string | O | Reference number of calibration certificate | Max 100 chars |
 | `firmware_version` | string | O | Audiometer firmware version if applicable | Max 50 chars |
-| `cads_version` | string | R | CADS version this record was created under | Semver format |
+| `cads_version` | string | R | CADS version this record was created under | Semver |
 | `created_at` | datetime | R | Record creation timestamp | ISO 8601 with UTC offset |
 | `updated_at` | datetime | R | Record last updated timestamp | ISO 8601 with UTC offset |
 
@@ -247,19 +269,17 @@ Identifies the audiometer used in testing and its calibration status. A valid, c
 
 ### 5.4 Worker Record
 
-Identifies the worker being tested. Worker identity is anonymized — personally identifiable information does not leave the control of the employer and hearing test company.
-
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
-| `worker_uuid` | string | R | Unique identifier for this worker | UUID v4. Stable across tests for the same worker. |
-| `employer_uuid` | string | R | Reference to the employer | UUID v4 |
-| `date_of_birth` | date | R | Worker's date of birth | ISO 8601 date. Required for age correction calculations. |
-| `sex` | string | R | Biological sex for normative reference purposes | `M` `F` |
-| `province_of_employment` | string | R | Province where the worker is primarily employed | ISO 3166-2 CA province code |
-| `noc_code` | string | R | National Occupational Classification code | 5-digit NOC 2021 code e.g. `73200` |
-| `noise_exposure_group` | string | O | Employer-assigned noise exposure group label | Max 100 chars |
-| `years_noise_exposed` | integer | O | Approximate years in noise-exposed employment | 0–60 |
-| `cads_version` | string | R | CADS version this record was created under | Semver format |
+| `worker_uuid` | UUID | R | Unique identifier for this worker | UUID v4. Stable across tests for the same worker. |
+| `employer_uuid` | UUID | R | Reference to the employer | UUID v4 |
+| `date_of_birth` | date | R | Worker's date of birth | ISO 8601. Required for age correction calculations. |
+| `sex` | string | R | Biological sex for normative reference | `M` `F` |
+| `province_of_employment` | string | R | Province of primary employment | ISO 3166-2 CA code |
+| `noc_code` | string | R | National Occupational Classification code | 5-digit NOC 2021 code |
+| `noise_exposure_group` | string | O | Employer-assigned exposure group label | Max 100 chars |
+| `years_noise_exposed` | integer | O | Approximate years in noise-exposed work | 0–60 |
+| `cads_version` | string | R | CADS version this record was created under | Semver |
 | `created_at` | datetime | R | Record creation timestamp | ISO 8601 with UTC offset |
 | `updated_at` | datetime | R | Record last updated timestamp | ISO 8601 with UTC offset |
 
@@ -267,57 +287,101 @@ Identifies the worker being tested. Worker identity is anonymized — personally
 
 ### 5.5 Questionnaire Record
 
-Captures pre-test health and exposure history collected from the worker before testing. See `standard/questionnaire.md` for the standardized questionnaire instrument.
+The CADS questionnaire instrument is fully defined in `standard/questionnaire.md`. This section defines the data fields that the questionnaire populates.
 
-| Field | Type | Req | Description | Valid Values / Constraints |
-|---|---|---|---|---|
-| `questionnaire_uuid` | string | R | Unique identifier for this questionnaire | UUID v4 |
-| `test_uuid` | string | R | Reference to the associated Test Record | UUID v4 |
-| `worker_uuid` | string | R | Reference to the Worker Record | UUID v4 |
-| `hours_since_noise_exposure` | decimal | R | Hours elapsed since last significant noise exposure | 0.0–168.0. Provincial minimum is 14 hours. |
-| `previous_noise_employment` | boolean | R | Prior employment in noise-exposed roles | `true` `false` |
-| `recreational_shooting` | boolean | R | Regular recreational shooting or hunting | `true` `false` |
-| `recreational_shooting_frequency` | string | C | Frequency if recreational_shooting is true | `occasional` `regular` Required if `recreational_shooting` is `true` |
-| `power_tools_use` | boolean | R | Regular use of power tools outside work | `true` `false` |
-| `motorsports` | boolean | R | Regular motorsports participation | `true` `false` |
-| `music_performance` | boolean | R | Regular music performance or attendance | `true` `false` |
-| `hpd_type` | string | R | Type of hearing protection used at work | `foam_plug` `premolded_plug` `earmuff` `custom` `combination` `none` |
-| `hpd_consistency` | string | R | Self-reported consistency of HPD use | `always` `usually` `sometimes` `never` `not_applicable` |
-| `hpd_fit_training_received` | boolean | R | Has the worker received HPD fit training | `true` `false` |
-| `ear_surgery_history` | boolean | R | History of ear surgery | `true` `false` |
-| `ear_infection_history` | boolean | R | History of chronic ear infections | `true` `false` |
-| `ototoxic_medication` | boolean | R | Current use of known ototoxic medications | `true` `false` |
-| `tinnitus_present` | boolean | R | Presence of tinnitus | `true` `false` |
-| `tinnitus_frequency` | string | C | Frequency of tinnitus if present | `constant` `frequent` `occasional` `rare`. Required if `tinnitus_present` is `true` |
-| `self_reported_hearing_difficulty` | boolean | R | Self-reported difficulty hearing in daily life | `true` `false` |
-| `worker_cooperation` | string | R | Technician assessment of worker cooperation during test | `good` `fair` `poor` |
-| `cads_version` | string | R | CADS version this record was created under | Semver format |
-| `created_at` | datetime | R | Record creation timestamp | ISO 8601 with UTC offset |
+Fields are classified as:
+
+- 🔵 **Contextual** — proxy estimation by the technician is accepted practice; basis documented in notes
+- 🔴 **Clinical** — worker's actual answer required; do not estimate or substitute
+
+#### Pre-Test Conditions
+
+| Field | Type | Req | Class | Description | Valid Values |
+|---|---|---|---|---|---|
+| `questionnaire_uuid` | UUID | R | — | Unique identifier | UUID v4 |
+| `test_uuid` | UUID | R | — | Reference to Test Record | UUID v4 |
+| `worker_uuid` | UUID | R | — | Reference to Worker Record | UUID v4 |
+| `recent_noise_exposure` | boolean | R | 🔵 | Noise exposure within the last 2 hours | `true` `false` |
+| `recent_exposure_duration` | enum | C | 🔵 | Duration since last noise exposure. Required if `recent_noise_exposure` is `true`. | `lt_2hrs` `2_to_4hrs` `gt_4hrs` |
+
+#### Occupational History
+
+| Field | Type | Req | Class | Description | Valid Values |
+|---|---|---|---|---|---|
+| `previous_noise_employment` | boolean | R | 🔵 | Prior employment in noise-exposed roles | `true` `false` |
+
+#### Non-Occupational Noise Exposure
+
+| Field | Type | Req | Class | Description | Valid Values |
+|---|---|---|---|---|---|
+| `recreational_shooting` | boolean | R | 🔵 | Recreational use of firearms | `true` `false` |
+| `recreational_shooting_type` | enum | C | 🔵 | Type of shooting activity. Required if `recreational_shooting` is `true`. | `hunting_casual` `competitive_sport` |
+| `recreational_shooting_hpd` | enum | C | 🔵 | HPD use during shooting. Required if `recreational_shooting` is `true`. | `always` `sometimes` `never` |
+| `power_tools_use` | boolean | R | 🔵 | Regular use of loud power tools outside work | `true` `false` |
+| `power_tools_hpd` | enum | C | 🔵 | HPD use during power tool use. Required if `power_tools_use` is `true`. | `always` `sometimes` `never` |
+| `motorsports` | boolean | R | 🔵 | Participation in or attendance at motorsports | `true` `false` |
+| `motorsports_type` | enum | C | 🔵 | Nature of motorsports involvement. Required if `motorsports` is `true`. | `operator` `spectator` |
+| `motorsports_hpd` | enum | C | 🔵 | HPD use during motorsports. Required if `motorsports` is `true`. | `always` `sometimes` `never` |
+| `music_performance` | boolean | R | 🔵 | Playing music or performing in a band | `true` `false` |
+| `music_performance_type` | enum | C | 🔵 | Nature of music involvement. Required if `music_performance` is `true`. | `casual` `regular_gigs` |
+| `music_performance_hpd` | enum | C | 🔵 | HPD use during music performance. Required if `music_performance` is `true`. | `always` `sometimes` `never` |
+| `concert_attendance` | enum | R | 🔵 | Frequency of attending loud concerts or events | `never` `occasional` `regular` |
+| `non_occupational_notes` | string | O | 🔵 | Technician observation — non-occupational exposure context | Max 500 chars |
+
+#### Hearing Protection
+
+| Field | Type | Req | Class | Description | Valid Values |
+|---|---|---|---|---|---|
+| `hpd_type` | enum | R | 🔵 | Type of hearing protection used at work | `foam_plug` `premolded_plug` `earmuff` `custom` `combination` `none` |
+| `hpd_consistency` | enum | R | 🔵 | Self-reported consistency of HPD use | `always` `usually` `sometimes` `never` `not_applicable` |
+| `hpd_fit_training_received` | boolean | R | 🔵 | Whether worker has received HPD fit training | `true` `false` |
+
+#### Medical History
+
+| Field | Type | Req | Class | Description | Valid Values |
+|---|---|---|---|---|---|
+| `ear_surgery_history` | boolean | R | 🔴 | History of ear surgery | `true` `false` |
+| `ear_infection_history` | boolean | R | 🔴 | History of chronic ear infections | `true` `false` |
+| `ototoxic_medication` | boolean | R | 🔴 | Current use of potentially ototoxic medications | `true` `false` |
+| `tinnitus_present` | boolean | R | 🔴 | Presence of tinnitus | `true` `false` |
+| `tinnitus_frequency` | enum | C | 🔴 | Frequency of tinnitus. Required if `tinnitus_present` is `true`. | `constant` `frequent` `occasional` `rare` |
+| `self_reported_hearing_difficulty` | boolean | R | 🔴 | Self-reported hearing difficulty in daily life | `true` `false` |
+
+#### Technician Assessment
+
+| Field | Type | Req | Class | Description | Valid Values |
+|---|---|---|---|---|---|
+| `worker_cooperation` | enum | R | 🔵 | Technician assessment of worker cooperation during testing | `good` `fair` `poor` |
+
+#### Metadata
+
+| Field | Type | Req | Description |
+|---|---|---|---|
+| `cads_version` | string | R | CADS version this record was created under |
+| `created_at` | datetime | R | Record creation timestamp |
 
 ---
 
 ### 5.6 Test Record
 
-The core record of the standard. Captures audiometric thresholds, compliance calculations, and outcomes for a single audiometric test event.
-
 #### 5.6.1 Test Identification and Context
 
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
-| `test_uuid` | string | R | Unique identifier for this test | UUID v4 |
-| `worker_uuid` | string | R | Reference to the Worker Record | UUID v4 |
-| `technician_uuid` | string | R | Reference to the Technician Record | UUID v4 |
-| `equipment_uuid` | string | R | Reference to the Equipment Record | UUID v4 |
-| `questionnaire_uuid` | string | R | Reference to the Questionnaire Record | UUID v4 |
-| `province` | string | R | Province in which the test was conducted | ISO 3166-2 CA province code |
+| `test_uuid` | UUID | R | Unique identifier for this test | UUID v4 |
+| `worker_uuid` | UUID | R | Reference to the Worker Record | UUID v4 |
+| `technician_uuid` | UUID | R | Reference to the Technician Record | UUID v4 |
+| `equipment_uuid` | UUID | R | Reference to the Equipment Record | UUID v4 |
+| `questionnaire_uuid` | UUID | R | Reference to the Questionnaire Record | UUID v4 |
+| `province` | string | R | Province in which the test was conducted | ISO 3166-2 CA code |
 | `test_date` | date | R | Date the test was conducted | ISO 8601 date |
-| `test_time` | string | R | Time the test was conducted | HH:MM in 24-hour format |
+| `test_time` | string | R | Time the test was conducted | HH:MM 24-hour format |
 | `test_type` | string | R | Category of this test | `baseline` `periodic` `exit` `retest` |
-| `baseline_test_uuid` | string | C | Reference to the baseline Test Record used for STS comparison | UUID v4. Required for `periodic`, `exit`, and `retest` test types. |
+| `baseline_test_uuid` | UUID | C | Reference to baseline Test Record for STS comparison | Required for `periodic` `exit` `retest` test types |
 
 #### 5.6.2 Otoscopy
 
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
 | `otoscopy_right` | string | R | Otoscopy result for right ear | `normal` `abnormal` `not_performed` |
 | `otoscopy_left` | string | R | Otoscopy result for left ear | `normal` `abnormal` `not_performed` |
@@ -325,9 +389,9 @@ The core record of the standard. Captures audiometric thresholds, compliance cal
 
 #### 5.6.3 Audiometric Thresholds
 
-All threshold values are expressed in dB HL (decibels Hearing Level). Valid range is -10 to 120 dB HL. A value of `null` indicates the frequency was not tested or the result was not obtainable.
+All threshold values are expressed in dB HL. Valid range: -10 to 120 dB HL. A value of `null` indicates the frequency was not tested or results were not obtainable.
 
-**Right Ear Thresholds:**
+**Right Ear:**
 
 | Field | Type | Req | Description |
 |---|---|---|---|
@@ -339,7 +403,7 @@ All threshold values are expressed in dB HL (decibels Hearing Level). Valid rang
 | `right_6000` | integer | O | Right ear threshold at 6000 Hz |
 | `right_8000` | integer | O | Right ear threshold at 8000 Hz |
 
-**Left Ear Thresholds:**
+**Left Ear:**
 
 | Field | Type | Req | Description |
 |---|---|---|---|
@@ -351,36 +415,36 @@ All threshold values are expressed in dB HL (decibels Hearing Level). Valid rang
 | `left_6000` | integer | O | Left ear threshold at 6000 Hz |
 | `left_8000` | integer | O | Left ear threshold at 8000 Hz |
 
-> **Note:** 500 Hz and 1000 Hz are required for completeness of the audiogram. 2000, 3000, and 4000 Hz are required for STS calculation. 6000 and 8000 Hz are optional but strongly recommended as early indicators of noise-induced hearing loss.
+> 500 Hz and 1000 Hz are required for audiogram completeness. 2000, 3000, and 4000 Hz are required for STS calculation. 6000 and 8000 Hz are optional but recommended as early indicators of noise-induced hearing loss.
 
 #### 5.6.4 STS Calculations
 
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
 | `sts_right` | boolean | R | STS detected in right ear | `true` `false` |
 | `sts_left` | boolean | R | STS detected in left ear | `true` `false` |
-| `sts_right_value` | decimal | C | Calculated STS value for right ear in dB | Required if `test_type` is not `baseline` |
-| `sts_left_value` | decimal | C | Calculated STS value for left ear in dB | Required if `test_type` is not `baseline` |
-| `age_correction_applied` | boolean | R | Whether age correction was applied to STS calculation | `true` `false` |
+| `sts_right_value` | decimal | C | Calculated STS value for right ear in dB | Required if test_type is not `baseline` |
+| `sts_left_value` | decimal | C | Calculated STS value for left ear in dB | Required if test_type is not `baseline` |
+| `age_correction_applied` | boolean | R | Whether age correction was applied | `true` `false` |
 | `age_correction_right` | decimal | C | Age correction value applied to right ear in dB | Required if `age_correction_applied` is `true` |
 | `age_correction_left` | decimal | C | Age correction value applied to left ear in dB | Required if `age_correction_applied` is `true` |
 
 #### 5.6.5 Outcome and Follow-Up
 
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
 | `outcome` | string | R | Overall test outcome classification | `normal` `sts_detected` `referral_required` `retest_required` |
-| `referral_type` | string | C | Type of referral indicated | `medical` `audiological` `none`. Required if `outcome` is `referral_required` |
+| `referral_type` | string | C | Type of referral indicated | `medical` `audiological` `none`. Required if outcome is `referral_required`. |
 | `follow_up_interval_months` | integer | O | Recommended follow-up interval in months | 1–12 |
 | `physician_referral_flag` | boolean | R | Whether a physician referral is indicated | `true` `false` |
 | `notes` | string | O | Technician notes on the test | Max 1000 chars |
 
 #### 5.6.6 Record Metadata
 
-| Field | Type | Req | Description | Valid Values / Constraints |
+| Field | Type | Req | Description | Constraints |
 |---|---|---|---|---|
-| `cads_version` | string | R | CADS version this record was created under | Semver format e.g. `1.0.0` |
-| `sync_status` | string | R | Synchronization status of this record | `pending` `synced` `failed` |
+| `cads_version` | string | R | CADS version this record was created under | Semver |
+| `sync_status` | string | R | Synchronization status | `pending` `synced` `failed` |
 | `created_at` | datetime | R | Record creation timestamp | ISO 8601 with UTC offset |
 | `updated_at` | datetime | R | Record last updated timestamp | ISO 8601 with UTC offset |
 | `submitted_at` | datetime | O | Timestamp of provincial submission if applicable | ISO 8601 with UTC offset |
@@ -393,48 +457,44 @@ All threshold values are expressed in dB HL (decibels Hearing Level). Valid rang
 
 A Standard Threshold Shift is defined as a change in hearing threshold, relative to the baseline audiogram, of an average of **10 dB or more** at **2000, 3000, and 4000 Hz** in either ear.
 
+This definition is consistent with CSA Z107.6 and is uniform across all Canadian jurisdictions that define STS.
+
 **Calculation:**
 
 ```
-STS_right = mean(right_2000_current - right_2000_baseline,
-                 right_3000_current - right_3000_baseline,
-                 right_4000_current - right_4000_baseline)
+STS_right = mean(right_2000_current − right_2000_baseline,
+                 right_3000_current − right_3000_baseline,
+                 right_4000_current − right_4000_baseline)
 
-STS_left  = mean(left_2000_current - left_2000_baseline,
-                 left_3000_current - left_3000_baseline,
-                 left_4000_current - left_4000_baseline)
+STS_left  = mean(left_2000_current − left_2000_baseline,
+                 left_3000_current − left_3000_baseline,
+                 left_4000_current − left_4000_baseline)
 ```
 
-If age correction is applied, the corrected baseline values are used in place of the raw baseline values (see Section 6.2).
+If age correction is applied, corrected baseline values are used in place of raw baseline values.
 
 **STS flag is set to `true` when the calculated value is ≥ 10.0 dB.**
-
-A positive STS in either ear triggers the outcome classification process described in Section 6.4.
 
 ### 6.2 Age Correction
 
 Age correction may be applied to adjust baseline thresholds upward to account for expected age-related hearing change (presbycusis), isolating occupational hearing loss from normal ageing.
 
-Age correction is **permitted but not mandatory** across all supported provinces. The `age_correction_applied` field must accurately reflect whether correction was used.
+Age correction is permitted across all Canadian jurisdictions. The `age_correction_applied` field must accurately reflect whether correction was used.
 
-Age correction values are taken from the NIOSH 1998 tables (Annex B of the Criteria for a Recommended Standard: Occupational Noise Exposure). See Appendix B for the reference correction values.
-
-**Application:**
+Age correction values are taken from the NIOSH 1998 tables (Appendix B). The correction is applied as the difference between the age correction at the current test age and the age correction at the baseline test age.
 
 ```
-corrected_baseline_frequency = baseline_threshold_frequency + age_correction_value
-STS_value = current_threshold_frequency - corrected_baseline_frequency
+corrected_baseline = baseline_threshold + (age_correction_current_age − age_correction_baseline_age)
+STS_value = current_threshold − corrected_baseline
 ```
-
-The age correction value is always additive to the baseline (i.e., it increases the baseline threshold, making it harder to trigger an STS flag). This is the established convention.
 
 ### 6.3 Baseline Comparison Rules
 
-1. Every test of type `periodic`, `exit`, or `retest` must reference a `baseline_test_uuid`.
-2. The referenced baseline must be of type `baseline`.
-3. If a worker's baseline has been revised (e.g., following a confirmed STS and re-established baseline), the most recent valid baseline is used.
-4. A baseline may not reference another test as its baseline.
-5. The baseline and comparison test must be for the same `worker_uuid`.
+1. Every test of type `periodic`, `exit`, or `retest` must reference a `baseline_test_uuid`
+2. The referenced baseline must be of type `baseline`
+3. If a worker's baseline has been revised following a confirmed STS, the most recent valid baseline is used
+4. A baseline record may not reference another test as its baseline
+5. The baseline and comparison test must reference the same `worker_uuid`
 
 ### 6.4 Outcome Classification
 
@@ -442,103 +502,80 @@ Outcomes are assigned according to the following hierarchy:
 
 | Priority | Outcome | Condition |
 |---|---|---|
-| 1 | `retest_required` | Worker cooperation rated `poor`, or otoscopy result is `abnormal`, or thresholds are inconsistent with prior tests indicating reliability concern |
-| 2 | `referral_required` | STS detected AND shift warrants medical or audiological evaluation per provincial protocol |
+| 1 | `retest_required` | Worker cooperation rated `poor`, otoscopy result is `abnormal`, or threshold reliability concern identified |
+| 2 | `referral_required` | STS detected AND shift warrants medical or audiological evaluation per applicable provincial protocol |
 | 3 | `sts_detected` | STS calculated as ≥ 10 dB in either ear, referral not yet indicated |
 | 4 | `normal` | No STS detected, no otoscopy abnormality, no reliability concern |
 
 ---
 
-## 7. Province Configuration Schema
+## 7. Provincial Profile Schema
 
-The CADS standard is universal — the data model, calculations, and field definitions are identical across all jurisdictions. Province configurations define the regulatory context in which the standard is applied, specifying which jurisdiction-specific requirements are in effect for a given province.
+### 7.1 Purpose of Provincial Profiles
 
-### 7.1 Configuration Fields
+Provincial profiles define the regulatory context in which the CADS Core Standard is applied. The core standard is universal — the data model, calculations, and field definitions are identical across all jurisdictions. Provincial profiles specify jurisdiction-specific parameters without modifying the core.
 
-Each supported province is defined by a configuration object with the following fields:
+A CADS-conformant system applies the profile corresponding to the province recorded in the Test Record's `province` field. When no profile exists for a jurisdiction, the core standard applies without profile extension.
 
-| Field | Type | Description | Valid Values |
+### 7.2 Profile Field Definitions
+
+Each provincial profile is a structured document containing the following fields:
+
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `province_code` | string | ISO 3166-2 CA province code | e.g. `BC` `AB` `SK` |
-| `province_name` | string | Full province name | |
-| `regulatory_authority` | string | Name of the occupational health regulator | |
-| `regulation_reference` | string | Specific regulation citation | |
-| `exit_test_required` | boolean | Whether exit testing is mandatory | `true` `false` |
-| `hpd_selection_documentation_required` | boolean | Whether HPD selection must be formally documented | `true` `false` |
-| `retention_years_minimum` | integer | Minimum record retention period in years | |
-| `language` | string | Primary language for this province | `en` `fr` |
-| `api_endpoint` | string | Provincial API endpoint if applicable | Valid URL or `null` |
-| `billing_webhook` | string | Billing event endpoint if applicable | Valid URL or `null` |
+| `province_code` | string | R | ISO 3166-2 CA province or territory code |
+| `province_name` | string | R | Full jurisdiction name |
+| `regulatory_authority` | string | R | Name of the occupational health and safety regulator |
+| `regulation_reference` | string | R | Specific regulation citation for noise and hearing conservation |
+| `exposure_limit_dba` | integer | R | Occupational exposure limit in dBA TWA over 8 hours |
+| `peak_limit_dbc` | integer | O | Peak exposure limit in dBC or dB |
+| `action_level_dba` | integer | O | Noise level above which specific obligations are triggered |
+| `hcp_required` | boolean | R | Whether a formal Hearing Conservation Program is required by regulation |
+| `hcp_worker_threshold` | integer | O | Minimum number of exposed workers before HCP is required (null = no threshold) |
+| `audiometric_testing_required` | boolean | R | Whether audiometric testing is required by regulation |
+| `testing_trigger_dba` | integer | O | dBA level above which audiometric testing is required |
+| `baseline_months` | integer | O | Maximum months after first exposure before baseline test is required |
+| `testing_frequency` | string | O | Required periodic testing frequency | `annual` `biennial` |
+| `exit_test_required` | boolean | R | Whether exit audiometric testing is specifically required |
+| `hpd_selection_documentation_required` | boolean | R | Whether HPD selection must be formally documented |
+| `retention_years_minimum` | integer | O | Minimum record retention period in years (null = not specified or indefinite) |
+| `language` | string | R | Primary language for this jurisdiction | `en` `fr` `bilingual` |
+| `notes` | string | O | Additional regulatory context or jurisdiction-specific notes |
+| `verification_date` | date | O | Date the profile was last verified against current regulation |
 
-### 7.2 Reference Configurations
+### 7.3 Profile Documents
 
-**British Columbia**
+Provincial profile documents are maintained separately from this standard in the `provincial/` directory of the CADS repository. Each file is named by province code (e.g., `BC.md`, `AB.md`).
 
-```json
-{
-  "province_code": "BC",
-  "province_name": "British Columbia",
-  "regulatory_authority": "WorkSafeBC",
-  "regulation_reference": "OHS Regulation Part 7",
-  "exit_test_required": true,
-  "hpd_selection_documentation_required": true,
-  "retention_years_minimum": 10,
-  "language": "en",
-  "api_endpoint": null,
-  "billing_webhook": null
-}
-```
+Profiles are versioned independently of the core standard. A profile update does not increment the core standard version.
 
-**Alberta**
+Current profiles:
 
-```json
-{
-  "province_code": "AB",
-  "province_name": "Alberta",
-  "regulatory_authority": "Alberta OHS",
-  "regulation_reference": "OHS Code Part 16",
-  "exit_test_required": false,
-  "hpd_selection_documentation_required": false,
-  "retention_years_minimum": 10,
-  "language": "en",
-  "api_endpoint": null,
-  "billing_webhook": null
-}
-```
+| File | Jurisdiction | Status |
+|---|---|---|
+| `provincial/BC.md` | British Columbia | Draft |
+| `provincial/AB.md` | Alberta | Draft |
+| `provincial/SK.md` | Saskatchewan | Draft |
 
-**Saskatchewan**
-
-```json
-{
-  "province_code": "SK",
-  "province_name": "Saskatchewan",
-  "regulatory_authority": "Saskatchewan OHS",
-  "regulation_reference": "OHS Regulations Part 7",
-  "exit_test_required": false,
-  "hpd_selection_documentation_required": false,
-  "retention_years_minimum": 10,
-  "language": "en",
-  "api_endpoint": null,
-  "billing_webhook": null
-}
-```
+Profiles for remaining Canadian provinces and territories are in development. See `docs/provincial-comparison.md` for the current regulatory research baseline.
 
 ---
 
 ## 8. Conformance Requirements
 
-### 8.1 Mandatory Fields
+### 8.1 Core Conformance
 
 A CADS-conformant implementation must:
 
-- Include all fields marked **R** (Required) in every record submitted
+- Include all fields marked **R** (Required) in every record
 - Populate conditional fields marked **C** when the specified condition is met
-- Use the exact field names specified in this document (snake_case)
+- Use the exact field names specified (snake_case throughout)
 - Use the exact valid values specified for enumerated fields
-- Generate a unique UUID v4 for every record UUID field at creation time
-- Include `cads_version` in every record reflecting the version of this standard under which the record was created
+- Generate a unique UUID v4 for every UUID field at record creation time
+- Include `cads_version` in every record reflecting the version under which the record was created
+- Accurately record whether proxy estimation was used in contextual questionnaire fields by documenting the basis in the relevant notes field
 
-### 8.2 Calculation Compliance
+### 8.2 Calculation Conformance
 
 A CADS-conformant implementation must:
 
@@ -546,15 +583,16 @@ A CADS-conformant implementation must:
 - Apply age correction only from the NIOSH 1998 reference tables in Appendix B
 - Accurately record whether age correction was applied in `age_correction_applied`
 - Reference the correct baseline test in `baseline_test_uuid` for all non-baseline test types
-- Assign outcome classifications following the hierarchy defined in Section 6.4
+- Assign outcome classifications following the hierarchy in Section 6.4
 
-### 8.3 Province Configuration Compliance
+### 8.3 Profile Conformance
 
-A CADS-conformant implementation must:
+A system claiming conformance with a specific provincial profile must:
 
-- Apply the province configuration for the province specified in the Test Record's `province` field
-- Enforce mandatory fields that are required by the province configuration (e.g., exit test documentation in BC)
-- Not override province configuration with application defaults
+- First be conformant with the CADS Core Standard
+- Apply the profile corresponding to the `province` field in each Test Record
+- Enforce mandatory elements specified in the provincial profile
+- Reference the profile version in implementation documentation
 
 ---
 
@@ -562,19 +600,19 @@ A CADS-conformant implementation must:
 
 CADS uses semantic versioning (`MAJOR.MINOR.PATCH`):
 
-- **MAJOR** version increments indicate breaking changes to the record schema. Existing records remain valid under their original version. Implementations must declare which major version they support.
-- **MINOR** version increments indicate new optional fields or new province configurations. Backward compatible.
-- **PATCH** version increments indicate corrections, clarifications, or editorial changes. No schema changes.
+- **MAJOR** — breaking changes to the record schema. Existing records remain valid under their original version. Implementations must declare which major version they support.
+- **MINOR** — new optional fields or new province profile schema fields. Backward compatible.
+- **PATCH** — corrections, clarifications, or editorial changes. No schema changes.
 
-The `cads_version` field in every record identifies the version of this standard under which the record was created. Systems receiving CADS records must be able to process records from any minor or patch version within the same major version.
+The `cads_version` field in every record identifies the version under which the record was created. Systems receiving CADS records must process records from any minor or patch version within the same major version.
 
-Province configuration additions (new provinces) are minor version increments.
+Provincial profile additions and updates are versioned separately from the core standard.
 
 ---
 
 ## Appendix A — NOC 2021 Reference Codes
 
-The following NOC 2021 codes represent the occupational categories most commonly encountered in industrial hearing conservation programs. This list is illustrative, not exhaustive.
+Common occupational codes encountered in industrial hearing conservation programs. Not exhaustive — full NOC 2021 listings available at [noc.esdc.gc.ca](https://noc.esdc.gc.ca).
 
 | NOC Code | Title |
 |---|---|
@@ -602,15 +640,11 @@ The following NOC 2021 codes represent the occupational categories most commonly
 | 93102 | Pulp mill operators |
 | 95100 | Labourers in processing, manufacturing and utilities |
 
-Full NOC 2021 code listings are available from Employment and Social Development Canada at [noc.esdc.gc.ca](https://noc.esdc.gc.ca).
-
 ---
 
 ## Appendix B — Age Correction Tables
 
-Age correction values represent the expected increase in hearing threshold due to presbycusis (age-related hearing change) for a given sex and age. Values are expressed in dB and are subtracted from the shift to reduce the likelihood of flagging age-related change as occupational STS.
-
-Values below are derived from NIOSH 1998 (Appendix B, Tables B-1 and B-2). The correction is applied as the difference between the age correction at the current test age and the age correction at the baseline test age.
+Age correction values represent expected threshold increase due to presbycusis. Values derived from NIOSH 1998 (Tables B-1 and B-2). Applied as the difference between age correction at current test age and age correction at baseline test age.
 
 **Male Age Correction (dB HL)**
 
@@ -649,8 +683,9 @@ For ages between table values, linear interpolation is applied. For ages below 2
 | Version | Date | Description |
 |---|---|---|
 | 1.0.0-draft | June 2026 | Initial draft specification |
+| 1.0.1-draft | June 2026 | Removed platform references. Established two-tier Core/Profile architecture. Updated questionnaire fields to v1.0.2 (replaced `hours_since_noise_exposure` with `recent_noise_exposure`/`recent_exposure_duration`; added activity-type and HPD fields for non-occupational noise). Added CSA Z107.6 to normative references. Clarified scope exclusions. Added Contextual/Clinical field classification. Added proxy estimation to Terms and Design Principles. |
 
 ---
 
-*Canadian Audiometric Data Standard (CADS) v1.0*
-*© RoadPilotAI — Open specification. See repository for licensing terms.*
+*Canadian Audiometric Data Standard (CADS) v1.0.1*
+*Open specification. See repository for licensing terms.*
