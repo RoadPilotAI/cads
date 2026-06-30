@@ -4,8 +4,8 @@
 **Status:** Draft
 **Version:** 1.0.1
 **Date:** June 2026
-**Maintainer:** RoadPilotAI
-**Repository:** [github.com/RoadPilotAI/cads](https://github.com/RoadPilotAI/cads)
+**Maintainer:** AudioPilot
+**Repository:** [github.com/AudioPilot/cads](https://github.com/AudioPilot/cads)
 
 ---
 
@@ -53,7 +53,7 @@
 
 ### 1.1 Purpose
 
-The Canadian Audiometric Data Standard (CADS) defines the national data exchange format for industrial audiometric testing conducted in Canada.
+The CADS/Standard defines the national data exchange format for industrial audiometric testing conducted in Canada.
 
 The standard governs how audiometric data is captured, structured, and exchanged when testing is conducted. It makes no determination about when testing is required — that is the domain of provincial and territorial occupational health and safety legislation. In jurisdictions where audiometric testing is mandated by regulation, CADS provides the data standard for that testing. In jurisdictions where testing is conducted as best practice under general duty of care, CADS provides the same standard. The data captured is identical regardless of the regulatory context in which testing occurs.
 
@@ -687,5 +687,5 @@ For ages between table values, linear interpolation is applied. For ages below 2
 
 ---
 
-*Canadian Audiometric Data Standard (CADS) v1.0.1*
+*CADS/Standard v1.0.1*
 *Open specification. See repository for licensing terms.*
