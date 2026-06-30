@@ -71,7 +71,7 @@ Hearing conservation in Canada today looks like this:
 
 ### The Compliance Gap
 
-Provincial regulations require employers to maintain Hearing Conservation Programs, conduct regular audiometric testing, and take action when significant threshold shifts occur. In practice, compliance is inconsistent. Employers find the requirements complex, documentation burdensome, and the consequences of non-compliance abstract until a WorkSafeBC inspection or a compensation claim makes it real.
+Provincial regulations require employers to maintain Hearing Conservation Programs, conduct regular audiometric testing, and take action when significant threshold shifts occur. In practice, compliance is inconsistent. Employers find the requirements complex, documentation burdensome, and the consequences of non-compliance abstract until a provincial inspection or a compensation claim makes it real.
 
 No province currently has the data infrastructure to know whether hearing conservation programs are actually working.
 
