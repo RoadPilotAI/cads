@@ -134,4 +134,4 @@ The `testing_frequency` field is set to `biennial` but the first periodic interv
 
 *CADS Provincial Profile — Alberta*
 *Draft for internal review — regulatory references subject to verification*
-*© RoadPilotAI*
+*© AudioPilot*
