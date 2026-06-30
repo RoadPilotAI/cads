@@ -491,6 +491,6 @@ The following items require direct regulatory verification before provincial pro
 
 ---
 
-*Canadian Audiometric Data Standard (CADS) — Provincial Regulatory Comparison v0.2*
+*CADS/Standard — Provincial Regulatory Comparison v0.2*
 *Research draft — for internal use pending regulatory verification*
-*© RoadPilotAI — Not for distribution*
+*© AudioPilot — Not for distribution*
