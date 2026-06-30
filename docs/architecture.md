@@ -62,7 +62,7 @@ A field application that defers calculations to a server is not conformant. The 
 
 ### 2.4 Offline Questionnaire
 
-The pre-test questionnaire must be completable offline. Where the Worker PWA pre-completion model is used, pre-completed questionnaire data must be available locally in the field application before connectivity is required.
+The pre-test questionnaire must be completable offline. Where the CADS Worker pre-completion model is used, pre-completed questionnaire data must be available locally in the field application before connectivity is required.
 
 ---
 
@@ -285,13 +285,13 @@ All CADS data must be encrypted:
 
 ### 9.2 Authentication
 
-Access to CADS platform interfaces must require authentication. Minimum requirements:
+Access to CADS/App interfaces must require authentication. Minimum requirements:
 
 - Unique credentials per user — shared accounts are not acceptable
 - Session tokens with defined expiry
 - Re-authentication required after session expiry
 
-Field applications (TechTool) operating offline are exempt from continuous authentication requirements. Authentication must be required at application launch and re-required after configurable inactivity periods.
+Field applications (CADS Field) operating offline are exempt from continuous authentication requirements. Authentication must be required at application launch and re-required after configurable inactivity periods.
 
 ### 9.3 Audit Logging
 
@@ -357,5 +357,5 @@ Use this checklist to verify architectural conformance before claiming CADS conf
 
 ---
 
-*Canadian Audiometric Data Standard (CADS) — Architecture Guidance v1.0*
-*© RoadPilotAI — Open specification. See repository for licensing terms.*
+*CADS/Standard — Architecture Guidance v1.0*
+*© AudioPilot — Open specification. See repository for licensing terms.*
