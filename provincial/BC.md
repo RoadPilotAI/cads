@@ -120,4 +120,4 @@ When an STS is detected:
 
 *CADS Provincial Profile — British Columbia*
 *Draft for internal review — regulatory references subject to verification*
-*© RoadPilotAI*
+*© AudioPilot*
