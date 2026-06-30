@@ -4,7 +4,7 @@
 **Status:** Draft
 **Version:** 1.0.0
 **Date:** June 2026
-**Maintainer:** RoadPilotAI
+**Maintainer:** AudioPilot
 
 > This document is a developer-friendly companion to the formal specification in `standard/CADS-v1.0.md`. The spec is authoritative. This document provides entity diagrams, enumeration references, and complete JSON examples for implementation guidance.
 
@@ -644,5 +644,5 @@ The following fields were added or changed in questionnaire instrument v1.0.2. T
 
 ---
 
-*Canadian Audiometric Data Standard (CADS) — Data Model Reference v1.0.0*
-*© RoadPilotAI — Open specification. See repository for licensing terms.*
+*CADS/Standard — Data Model Reference v1.0.0*
+*© AudioPilot — Open specification. See repository for licensing terms.*
