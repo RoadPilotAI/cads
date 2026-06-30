@@ -4,7 +4,7 @@
 **Status:** Draft
 **Version:** 1.0.2
 **Date:** June 2026
-**Maintainer:** RoadPilotAI
+**Maintainer:** AudioPilot
 
 ---
 
@@ -12,7 +12,7 @@
 
 - [1. Overview](#1-overview)
 - [2. Administration Guidelines](#2-administration-guidelines)
-  - [Worker Pre-Completion via Worker PWA](#worker-pre-completion-via-worker-pwa)
+  - [Worker Pre-Completion via CADS Worker](#worker-pre-completion-via-worker-pwa)
   - [Before You Begin](#before-you-begin)
   - [Quiet Period](#quiet-period)
   - [Worker Instructions](#worker-instructions)
@@ -30,7 +30,7 @@
 
 ## 1. Overview
 
-The CADS Standardized Pre-Test Questionnaire is the instrument used to collect worker health and noise exposure history before conducting an industrial audiometric test. It is administered by the technician at the start of each test session, or pre-completed by the worker via the CADS Worker PWA before arriving at the test site.
+The CADS Standardized Pre-Test Questionnaire is the instrument used to collect worker health and noise exposure history before conducting an industrial audiometric test. It is administered by the technician at the start of each test session, or pre-completed by the worker via the CADS CADS Worker before arriving at the test site.
 
 **Purpose:**
 
@@ -62,9 +62,9 @@ Equally, a worker who consistently reported using hearing protection, who has no
 
 ## 2. Administration Guidelines
 
-### Worker Pre-Completion via Worker PWA
+### Worker Pre-Completion via CADS Worker
 
-The CADS Worker PWA allows workers to complete the questionnaire before arriving at the mobile clinic, using any smartphone or tablet browser. The employer distributes a unique link or QR code to workers in advance of the testing day — no account creation or password is required.
+The CADS CADS Worker allows workers to complete the questionnaire before arriving at the mobile clinic, using any smartphone or tablet browser. The employer distributes a unique link or QR code to workers in advance of the testing day — no account creation or password is required.
 
 **Pre-completable sections (Sections B through E)** contain questions about occupational history, non-occupational noise exposure, hearing protection habits, and medical history. These answers are stable and do not change from day to day. When a worker pre-completes these sections, the technician simply reviews and confirms the answers on arrival rather than collecting them verbally.
 
@@ -73,7 +73,7 @@ The CADS Worker PWA allows workers to complete the questionnaire before arriving
 **Time savings:** Pre-completion typically reduces per-worker questionnaire time from 5–7 minutes to under 60 seconds at the mobile clinic. Across a 50-worker testing day this recovers two to three hours of testing capacity.
 
 When workers have pre-completed Sections B through E, the technician:
-1. Opens the worker's record in TechTool — the pre-completed questionnaire is displayed
+1. Opens the worker's record in CADS Field — the pre-completed questionnaire is displayed
 2. Briefly reviews answers with the worker and confirms nothing has changed
 3. Collects Section A (recent noise exposure — time sensitive)
 4. Proceeds to otoscopy and testing
@@ -83,7 +83,7 @@ When workers have pre-completed Sections B through E, the technician:
 
 - Confirm the worker's identity and locate or create their Worker Record
 - Confirm the test type (baseline, periodic, exit, or retest)
-- Check whether the worker has pre-completed Sections B–E via the Worker PWA
+- Check whether the worker has pre-completed Sections B–E via the CADS Worker
 - If no pre-completion: administer the full questionnaire verbally or allow the worker to self-complete
 - All questions must be answered before proceeding to otoscopy and audiometric testing
 - Record answers directly into the CADS system; do not rely on paper transcription
@@ -111,7 +111,7 @@ Read or display the following to the worker before beginning:
 Section labels indicate when each section is completed:
 
 - 🕐 **Day-of** — must be collected at the time of testing
-- 📱 **Pre-completable** — may be completed in advance via the Worker PWA
+- 📱 **Pre-completable** — may be completed in advance via the CADS Worker
 
 Question labels indicate data handling:
 
@@ -142,7 +142,7 @@ Question labels indicate data handling:
 ---
 
 ### Section B — Occupational Noise History
-📱 **Pre-completable via Worker PWA**
+📱 **Pre-completable via CADS Worker**
 
 ---
 
@@ -164,7 +164,7 @@ Question labels indicate data handling:
 ---
 
 ### Section C — Non-Occupational Noise Exposure
-📱 **Pre-completable via Worker PWA**
+📱 **Pre-completable via CADS Worker**
 
 *Questions in this section use activity-type framing to reduce strategic answering. Ask questions neutrally. Do not suggest answers or apply arbitrary frequency thresholds. Use the technician notes field to document context where a checkbox answer does not fully capture the worker's situation.*
 
@@ -255,7 +255,7 @@ Question labels indicate data handling:
 ---
 
 ### Section D — Hearing Protection
-📱 **Pre-completable via Worker PWA**
+📱 **Pre-completable via CADS Worker**
 
 ---
 
@@ -294,7 +294,7 @@ Question labels indicate data handling:
 ---
 
 ### Section E — Medical History
-📱 **Pre-completable via Worker PWA**
+📱 **Pre-completable via CADS Worker**
 
 ---
 
@@ -513,5 +513,5 @@ Worker cooperation is assessed after testing. A rating of `poor` sets the test o
 
 ---
 
-*Canadian Audiometric Data Standard (CADS) — Questionnaire Instrument v1.0.2*
-*© RoadPilotAI — Open specification. See repository for licensing terms.*
+*CADS/Standard — Questionnaire Instrument v1.0.2*
+*© AudioPilot — Open specification. See repository for licensing terms.*
